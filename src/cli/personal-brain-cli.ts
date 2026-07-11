@@ -91,7 +91,7 @@ program
       });
 
       // DeepAgents automatically includes file system tools (read_file, ls, grep)
-      // This allows the agent to search the wiki-output directory by itself!
+      // This allows the agent to search the wiki-output directory by itself
       const agent = await createDeepAgent({
         model: model,
         systemPrompt: `

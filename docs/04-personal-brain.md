@@ -1,30 +1,30 @@
-# العقل الشخصي (Personal Brain)
+# Personal Brain
 
-نمط **Personal Brain** هو النمط المخصص لبناء "ذاكرة استباقية" (Proactive Memory) لوكيلك الذكي. بدلاً من التركيز على الأكواد، يركز هذا النمط على سياق عملك اليومي.
+The **Personal Brain** mode is dedicated to building "Proactive Memory" for your AI agent. Instead of focusing on code, this mode focuses on your daily work context.
 
-## كيف يعمل؟
+## How Does It Work?
 
-1. **الربط:** تقوم بربط OpenWiki بمصادر بياناتك (Connectors) مثل Gmail، Notion، X (Twitter)، وغيرها.
-2. **الاستيعاب (Ingestion):** يقوم الوكيل بقراءة هذه المصادر واستخراج المعلومات الهامة (مثل مشاريعك الحالية، اهتماماتك البحثية، رسائلك الهامة).
-3. **الحفظ:** يحفظ هذه المعلومات كملفات Markdown في جهازك المحلي داخل المسار `~/.openwiki/wiki/`.
-4. **الاستخدام:** يمكن لوكلائك الأذكياء قراءة هذا المسار لمعرفة سياقك دون الحاجة لأن تشرح لهم كل شيء من الصفر في كل محادثة.
+1. **Connecting:** You connect OpenWiki to your data sources (Connectors) like Gmail, Notion, X (Twitter), etc.
+2. **Ingestion:** The agent reads these sources and extracts important information (like your current projects, research interests, important emails).
+3. **Saving:** It saves this information as Markdown files on your local machine in the `~/.openwiki/wiki/` path.
+4. **Usage:** Your AI agents can read this path to understand your context without you having to explain everything from scratch in every conversation.
 
-## الاستخدام
+## Usage
 
-لتهيئة العقل الشخصي لأول مرة:
+To initialize the Personal Brain for the first time:
 
 ```bash
 openwiki personal --init
 ```
 
-أثناء التهيئة، ستسألك الأداة عن "التركيز" (Focus) الذي تريده للذاكرة. على سبيل المثال، يمكنك إخبارها: "ركز على مشاريع الذكاء الاصطناعي، ورسائل العملاء، والروابط التقنية المحفوظة".
+During initialization, the tool will ask you about the "Focus" you want for the memory. For example, you can tell it: "Focus on AI projects, client messages, and saved technical links."
 
-لتحديث العقل الشخصي يدوياً من المصادر المربوطة:
+To manually update the Personal Brain from connected sources:
 
 ```bash
 openwiki --update "Refresh the wiki from configured connectors"
 ```
 
-## التحديث التلقائي
+## Automatic Updates
 
-على أنظمة macOS، يمكن لـ OpenWiki تثبيت جداول زمنية (Schedules) كـ LaunchAgents في مسار `~/Library/LaunchAgents/` لتقوم بتحديث الذاكرة الشخصية في الخلفية بشكل دوري، مما يضمن أن وكيلك يمتلك دائماً أحدث المعلومات.
+On macOS systems, OpenWiki can install schedules as LaunchAgents in the `~/Library/LaunchAgents/` path to update the personal memory in the background periodically, ensuring your agent always has the latest information.

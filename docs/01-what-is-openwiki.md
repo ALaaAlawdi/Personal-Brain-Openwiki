@@ -1,26 +1,26 @@
-# ما هي OpenWiki؟
+# What is OpenWiki?
 
-**OpenWiki** هي أداة مفتوحة المصدر (CLI) ووكيل ذكي (Agent) تم تطويرها بواسطة فريق LangChain وتم إطلاقها في منتصف عام 2026. تهدف الأداة إلى حل مشكلة "السياق" (Context) التي تواجه وكلاء البرمجة والذكاء الاصطناعي عند التعامل مع مشاريع ضخمة أو مهام تتطلب ذاكرة طويلة الأمد.
+**OpenWiki** is an open-source Command Line Interface (CLI) and AI agent developed by LangChain, launched in mid-2026. The tool aims to solve the "context" problem faced by AI coding agents when dealing with large projects or tasks requiring long-term memory.
 
-## الفكرة الأساسية: LLM Wiki
+## The Core Concept: LLM Wiki
 
-الفكرة مستوحاة من مفهوم طرحه الباحث أندريه كارباثي (Andrej Karpathy) يُعرف باسم "LLM Wiki". الفكرة ببساطة هي: بدلاً من إجبار الوكيل الذكي (مثل Claude Code أو Cursor) على البحث في آلاف الملفات البرمجية لفهم كيف يعمل المشروع، يجب أن نوفر له "ويكي" (Wiki) مصمم خصيصاً للذكاء الاصطناعي.
+The idea is inspired by a concept proposed by researcher Andrej Karpathy known as the "LLM Wiki". Simply put: instead of forcing an AI agent (like Claude Code or Cursor) to search through thousands of source code files to understand how a project works, we should provide it with a "Wiki" specifically designed for AI.
 
-هذا الويكي يحتوي على ملخصات للمعماريات، الواجهات البرمجية (APIs)، سير العمل، وأدلة الأكواد. عندما يحتاج الوكيل إلى تعديل شيء ما، يقرأ هذه الملخصات أولاً، مما يقلل من الوقت، يوفر استهلاك الـ Tokens، ويقلل من الهلوسة (Hallucinations).
+This Wiki contains summaries of architectures, APIs, workflows, and code guidelines. When the agent needs to modify something, it reads these summaries first, which saves time, reduces token consumption, and minimizes hallucinations.
 
-## الأنماط الرئيسية في OpenWiki
+## Main Modes in OpenWiki
 
-تدعم الأداة نمطين أساسيين للعمل:
+The tool supports two primary modes of operation:
 
-### 1. Code Brain (عقل الشيفرة)
-وهو النمط الأصلي الذي تم إطلاق الأداة من أجله. يعمل هذا النمط داخل مستودع الأكواد (Git Repo). يقوم الوكيل بمسح جميع ملفات المشروع، وفهم العلاقات بينها، ثم يولد وثائق Markdown توضح هيكلية المشروع وتفاصيله. يتم حفظ هذه الوثائق في مجلد `openwiki/` داخل المستودع.
+### 1. Code Brain
+This is the original mode for which the tool was launched. It operates inside a Git repository. The agent scans all project files, understands the relationships between them, and generates Markdown documents explaining the project's structure and details. These documents are saved in an `openwiki/` folder within the repository.
 
-### 2. Personal Brain (العقل الشخصي)
-وهو النمط الأحدث (بدءاً من الإصدار 0.1.0). يهدف إلى منح الوكيل "ذاكرة استباقية" (Proactive Memory). بدلاً من التركيز على الأكواد، يقوم هذا النمط بربط مصادر متعددة (مثل إيميلات Gmail، ملاحظات Notion، وتغريدات X) لإنشاء قاعدة معرفية عامة تحفظ في جهازك المحلي (`~/.openwiki/wiki`). هذا يسمح للوكيل بمعرفة سياق عملك، مشاريعك الحالية، واهتماماتك دون أن تضطر لإخباره بها في كل مرة.
+### 2. Personal Brain
+This is the newer mode (introduced in version 0.1.0). It aims to give the agent "Proactive Memory". Instead of focusing on code, this mode connects multiple sources (like Gmail emails, Notion notes, and X/Twitter posts) to create a general knowledge base saved on your local machine (`~/.openwiki/wiki`). This allows the agent to know your work context, current projects, and interests without you having to explain them in every conversation.
 
-## لماذا نستخدم OpenWiki؟
+## Why Use OpenWiki?
 
-* **تقليل استهلاك الـ Tokens:** الوكيل يقرأ الملخصات بدلاً من قراءة الكود المصدري كاملاً.
-* **فهم أسرع:** الوكيل يحصل على صورة عامة للمشروع في ثوانٍ.
-* **توثيق دائم التحديث:** يمكن أتمتة الأداة لتعمل يومياً وتحدث الوثائق بناءً على التغييرات الجديدة (Git Diffs).
-* **دعم وكلاء متعددين:** الملفات الناتجة هي ملفات Markdown عادية، مما يعني أن أي وكيل ذكي يمكنه قراءتها والاستفادة منها.
+* **Reduced Token Consumption:** The agent reads summaries instead of reading the entire source code.
+* **Faster Understanding:** The agent gets an overview of the project in seconds.
+* **Always Up-to-Date Documentation:** The tool can be automated to run daily and update documentation based on new changes (Git Diffs).
+* **Multi-Agent Support:** The output files are standard Markdown files, meaning any AI agent can read and benefit from them.

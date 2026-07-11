@@ -1,49 +1,49 @@
-# خطوات التثبيت والإعداد
+# Installation and Setup
 
-تم تصميم OpenWiki ليكون سهل التثبيت والاستخدام مباشرة من سطر الأوامر (CLI).
+OpenWiki is designed to be easily installed and used directly from the Command Line Interface (CLI).
 
-## المتطلبات الأساسية
-- **Node.js**: الإصدار 18 أو أحدث.
-- **npm**: مدير حزم Node.js.
-- **مفتاح API**: لمزود نماذج لغوية (LLM) مثل OpenAI، Anthropic، أو OpenRouter.
+## Prerequisites
+- **Node.js**: Version 18 or newer.
+- **npm**: Node.js package manager.
+- **API Key**: For an LLM provider such as OpenAI, Anthropic, or OpenRouter.
 
-## التثبيت
+## Installation
 
-قم بتثبيت الأداة عالمياً على جهازك باستخدام npm:
+Install the tool globally on your machine using npm:
 
 ```bash
 npm install -g openwiki
 ```
 
-## الإعداد الأولي (Onboarding)
+## Initial Setup (Onboarding)
 
-أثناء تشغيل الأداة لأول مرة (سواء لنمط الأكواد أو النمط الشخصي)، ستظهر لك واجهة تفاعلية تطلب منك إعداد مزود النموذج اللغوي.
+When running the tool for the first time (whether for Code mode or Personal mode), an interactive interface will appear asking you to set up your LLM provider.
 
-تدعم الأداة عدة مزودين:
-- `openai` (الافتراضي يستخدم `gpt-5.5`)
+The tool supports several providers:
+- `openai` (Defaults to `gpt-5.5`)
 - `anthropic`
 - `openrouter`
 - `fireworks`
 - `baseten`
-- `openai-compatible` (لأي نقطة نهاية متوافقة مع OpenAI)
-- `openai-chatgpt` (استخدام اشتراك ChatGPT Plus بدلاً من مفتاح API مدفوع)
+- `openai-compatible` (For any OpenAI-compatible endpoint)
+- `openai-chatgpt` (Uses a ChatGPT Plus subscription instead of a paid API key)
 
-### مثال: تهيئة نمط الأكواد
+### Example: Initializing Code Mode
 
-انتقل إلى مجلد مشروعك البرمجي وشغل:
+Navigate to your project folder and run:
 
 ```bash
 openwiki code --init
 ```
 
-ستسألك الأداة عن المزود، ومفتاح الـ API، وما إذا كنت تريد تفعيل التتبع عبر LangSmith. يتم حفظ هذه الإعدادات محلياً في ملف `~/.openwiki/.env`.
+The tool will ask for your provider, API key, and whether you want to enable LangSmith tracing. These settings are saved locally in the `~/.openwiki/.env` file.
 
-### استخدام حساب ChatGPT (بدون مفتاح API)
+### Using a ChatGPT Account (Without API Key)
 
-إذا كان لديك اشتراك ChatGPT وتريد استخدامه بدلاً من الدفع لكل Token:
+If you have a ChatGPT subscription and want to use it instead of paying per token:
 
 ```bash
 OPENWIKI_PROVIDER=openai-chatgpt openwiki code --init
 ```
 
-ستقوم الأداة بفتح متصفحك لتسجيل الدخول إلى حسابك، ثم ستحتفظ برمز الوصول (Access Token) وتجدده تلقائياً.
+The tool will open your browser to log into your account, then it will capture the Access Token and automatically refresh it.

@@ -1,35 +1,35 @@
-# عقل الشيفرة (Code Brain)
+# Code Brain
 
-نمط **Code Brain** هو النمط المخصص لتوثيق المستودعات البرمجية (Repositories). هدفه هو مساعدة وكلاء الذكاء الاصطناعي (مثل Claude Code أو Cursor) على فهم هيكلية مشروعك بسرعة.
+The **Code Brain** mode is dedicated to documenting code repositories. Its goal is to help AI agents (like Claude Code or Cursor) understand your project's structure quickly.
 
-## كيف يعمل؟
+## How Does It Work?
 
-1. **المسح:** يقوم الوكيل بمسح جميع ملفات المشروع وفهم العلاقات بينها (باستخدام أدوات DeepAgents).
-2. **التوليد:** يولد وثائق Markdown تلخص المعمارية، الواجهات البرمجية، سير العمل، وأدلة الأكواد.
-3. **الحفظ:** يحفظ هذه الوثائق في مجلد `openwiki/` داخل مشروعك.
-4. **التوجيه:** يقوم بتحديث أو إنشاء ملفات `AGENTS.md` أو `CLAUDE.md` في جذر المشروع، ويضيف فيها توجيهاً للوكيل ليقرأ مجلد `openwiki/` قبل البدء بأي تعديل.
+1. **Scanning:** The agent scans all project files and understands the relationships between them (using DeepAgents tools).
+2. **Generation:** It generates Markdown documents summarizing the architecture, APIs, workflows, and code guidelines.
+3. **Saving:** It saves these documents in an `openwiki/` folder inside your project.
+4. **Directing:** It updates or creates `AGENTS.md` or `CLAUDE.md` files in the project root, adding a directive for the agent to read the `openwiki/` folder before making any modifications.
 
-## الاستخدام
+## Usage
 
-لتهيئة توثيق جديد لمشروعك:
+To initialize new documentation for your project:
 
 ```bash
 cd my-project
 openwiki code --init
 ```
 
-لتحديث التوثيق بعد إجراء تغييرات على الكود:
+To update the documentation after making code changes:
 
 ```bash
 openwiki code --update
 ```
 
-يمكنك أيضاً تشغيل تحديث غير تفاعلي (مفيد في الـ CI/CD):
+You can also run a non-interactive update (useful in CI/CD):
 
 ```bash
 openwiki code --update --print
 ```
 
-## الفائدة العملية
+## Practical Benefit
 
-تخيل أن لديك مشروعاً ضخماً يحتوي على 5000 ملف. عندما تطلب من الوكيل "إضافة دعم لتسجيل الدخول عبر Google"، بدلاً من أن يضيع الوكيل وقته (والـ Tokens الخاصة بك) في البحث عن مكان ملفات المصادقة، سيقرأ ملف `openwiki/Authentication.md` وسيعرف فوراً أن ملفات المصادقة تقع في مجلد `src/auth/` وأن المشروع يستخدم `JWT`. هذا يسرع العمل بشكل هائل ويقلل الأخطاء.
+Imagine you have a massive project with 5,000 files. When you ask the agent to "add support for Google login", instead of wasting time (and your tokens) searching for the authentication files, it will read `openwiki/Authentication.md` and immediately know that auth files are located in `src/auth/` and that the project uses `JWT`. This speeds up the work tremendously and reduces errors.

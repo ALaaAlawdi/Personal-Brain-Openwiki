@@ -1,49 +1,49 @@
-# الموصلات (Connectors)
+# Connectors
 
-الموصلات هي الطريقة التي يستخدمها نمط **Personal Brain** في OpenWiki لجلب المعلومات من مصادرك الخارجية وبناء ذاكرتك الشخصية.
+Connectors are the method used by the **Personal Brain** mode in OpenWiki to fetch information from your external sources and build your personal memory.
 
-## الموصلات المدعومة حالياً
+## Currently Supported Connectors
 
-- **Git Repositories (`git-repo`)**: قراءة مستودعاتك المحلية وبناء ملخصات عنها.
-- **X / Twitter (`x`)**: جلب التغريدات، الإشارات (Mentions)، العلامات المرجعية (Bookmarks)، وتغريدات القوائم.
-- **Notion (`notion`)**: قراءة صفحات ومساحات العمل في Notion (عبر خادم MCP).
-- **Gmail (`google`)**: قراءة أحدث رسائل البريد الإلكتروني.
-- **Web Search (`web-search`)**: إجراء عمليات بحث على الويب (يتطلب `TAVILY_API_KEY`).
-- **Hacker News (`hackernews`)**: جلب أحدث المنشورات والأخبار التقنية.
+- **Git Repositories (`git-repo`)**: Reads your local repositories and builds summaries of them.
+- **X / Twitter (`x`)**: Fetches tweets, mentions, bookmarks, and list posts.
+- **Notion (`notion`)**: Reads pages and workspaces in Notion (via an MCP server).
+- **Gmail (`google`)**: Reads your latest emails.
+- **Web Search (`web-search`)**: Performs web searches (requires `TAVILY_API_KEY`).
+- **Hacker News (`hackernews`)**: Fetches the latest posts and tech news.
 
-## كيفية ربط الموصلات
+## How to Link Connectors
 
-تستخدم OpenWiki أمر `auth` لربط حساباتك عبر بروتوكول OAuth.
+OpenWiki uses the `auth` command to link your accounts via the OAuth protocol.
 
-لربط حساب X (تويتر):
+To link an X (Twitter) account:
 ```bash
 openwiki auth x
 ```
 
-لربط حساب Gmail:
+To link a Gmail account:
 ```bash
 openwiki auth gmail
 ```
 
-لربط حساب Notion:
+To link a Notion account:
 ```bash
 openwiki auth notion
 ```
 
-ستقوم الأداة بفتح متصفحك لإكمال عملية تسجيل الدخول، ثم ستحفظ الرموز (Tokens) بشكل آمن في ملف `~/.openwiki/.env`.
+The tool will open your browser to complete the login process, then securely save the Tokens in the `~/.openwiki/.env` file.
 
-## الاستيعاب (Ingestion)
+## Ingestion
 
-بمجرد ربط الموصلات، يمكنك طلب استيعاب البيانات منها:
+Once connectors are linked, you can request data ingestion from them:
 
-لاستيعاب البيانات من جميع الموصلات المربوطة:
+To ingest data from all linked connectors:
 ```bash
 openwiki ingest all
 ```
 
-لاستيعاب البيانات من موصل محدد (مثلاً Web Search):
+To ingest data from a specific connector (e.g., Web Search):
 ```bash
 openwiki ingest web-search
 ```
 
-تقوم الأداة أولاً بجلب البيانات الخام وحفظها في `~/.openwiki/connectors/<connector>/raw/`، ثم يقوم الوكيل الذكي بتحليلها وتلخيصها ووضعها في الويكي النهائي في `~/.openwiki/wiki/`.
+The tool first fetches the raw data and saves it in `~/.openwiki/connectors/<connector>/raw/`, then the AI agent analyzes, summarizes, and places it in the final wiki at `~/.openwiki/wiki/`.

@@ -1,25 +1,25 @@
-# أتمتة التحديث عبر GitHub Actions
+# GitHub Actions Automation
 
-أكبر مشكلة تواجه التوثيق هي أنه يصبح قديماً بسرعة. OpenWiki تحل هذه المشكلة من خلال دعمها للتحديث التلقائي عبر أدوات الـ CI/CD مثل GitHub Actions.
+The biggest problem with documentation is that it becomes outdated quickly. OpenWiki solves this problem by supporting automatic updates via CI/CD tools like GitHub Actions.
 
-## كيف تعمل الأتمتة؟
+## How Does Automation Work?
 
-بدلاً من أن تقوم بتشغيل `openwiki code --update` يدوياً كلما قمت بتعديل الكود، يمكنك إعداد إجراء (Action) يعمل يومياً أو عند كل عملية دفع (Push). سيقوم الإجراء بقراءة التغييرات (Git diffs) وتحديث التوثيق تلقائياً، ثم إنشاء Pull Request بالتحديثات.
+Instead of manually running `openwiki code --update` every time you modify the code, you can set up an Action that runs daily or on every Push. The Action will read the changes (Git diffs), update the documentation automatically, and then create a Pull Request with the updates.
 
-## إعداد GitHub Actions
+## Setting Up GitHub Actions
 
-1. في مستودعك، أنشئ المجلدات التالية إذا لم تكن موجودة: `.github/workflows/`
-2. أنشئ ملفاً باسم `openwiki-update.yml` داخل هذا المجلد.
-3. ضع الكود التالي داخل الملف:
+1. In your repository, create the following folders if they don't exist: `.github/workflows/`
+2. Create a file named `openwiki-update.yml` inside this folder.
+3. Place the following code inside the file:
 
 ```yaml
 name: OpenWiki Update
 
 on:
   schedule:
-    # يعمل يومياً عند منتصف الليل
+    # Runs daily at midnight
     - cron: '0 0 * * *'
-  workflow_dispatch: # يسمح بالتشغيل اليدوي
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   update-wiki:
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # مهم جداً لجلب تاريخ التغييرات (Git diffs)
+          fetch-depth: 0 # Very important to fetch git history for diffs
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,10 +44,10 @@ jobs:
 
       - name: Update Documentation
         env:
-          # حدد مزود النموذج الذي تفضله
+          # Specify your preferred model provider
           OPENWIKI_PROVIDER: openai
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          # اختيارياً، يمكنك إضافة تتبع LangSmith
+          # Optionally, you can add LangSmith tracing
           LANGCHAIN_TRACING_V2: "true"
           LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
           LANGCHAIN_PROJECT: "openwiki-ci"
@@ -62,6 +62,6 @@ jobs:
           branch: "openwiki-automated-update"
 ```
 
-## ملاحظات هامة:
-- تأكد من إضافة مفتاح `OPENAI_API_KEY` (أو مفتاح المزود الذي تستخدمه) في إعدادات الأسرار (Secrets) الخاصة بمستودعك على GitHub.
-- استخدام `--print` في الأمر `openwiki code --update --print` مهم جداً لأنه يخبر الأداة بأن تعمل في وضع غير تفاعلي (Non-interactive) وتطبع النتائج وتخرج، وهو المطلوب في بيئات الـ CI/CD.
+## Important Notes:
+- Ensure you add the `OPENAI_API_KEY` (or the key of the provider you are using) in your repository's Secrets settings on GitHub.
+- Using `--print` in the command `openwiki code --update --print` is crucial because it tells the tool to run in a Non-interactive mode, print the results, and exit, which is required in CI/CD environments.
